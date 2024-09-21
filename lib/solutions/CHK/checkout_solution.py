@@ -68,19 +68,28 @@ def checkout(skus: str) -> int:
             counts[sku] = 0  # Reset counts (these items are processed in the group discount logic)
 
     if group_discount_skus:
-        group_discount_skus.sort(key=lambda sku: )
+        group_discount_skus.sort(key=lambda sku: prices[sku], reverse=True)
+        group_discount_sets = len(group_discount_skus) // 3
 
-    group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
-    if group_discount_count >= 3:
-        group_discount_sets = group_discount_count // 3
+        # Apply the group discount for every set of 3
         total += group_discount_sets * 45
 
-        # Adjust counts for the items in the group discount after applying the discount
-        for sku in group_discount_items:
-            if counts.get(sku, 0) > 0:
-                used_items = min(counts[sku], group_discount_sets * 3)
-                counts[sku] -= used_items
-                group_discount_sets -= used_items // 3
+        remaining_items = len(group_discount_skus) % 3
+        if remaining_items > 0:
+            for sku in group_discount_skus[-remaining_items:]:
+                total += prices[sku]  # Add the price for the remaining items
+
+    # group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
+    # if group_discount_count >= 3:
+    #     group_discount_sets = group_discount_count // 3
+    #     total += group_discount_sets * 45
+
+    #     # Adjust counts for the items in the group discount after applying the discount
+    #     for sku in group_discount_items:
+    #         if counts.get(sku, 0) > 0:
+    #             used_items = min(counts[sku], group_discount_sets * 3)
+    #             counts[sku] -= used_items
+    #             group_discount_sets -= used_items // 3
 
     # Step 3: Apply discounts and compute the total
     for sku, count in counts.items():
@@ -94,9 +103,3 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
-
-
-
-
-
-

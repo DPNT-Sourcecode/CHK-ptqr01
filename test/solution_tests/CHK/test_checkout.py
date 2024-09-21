@@ -96,8 +96,3 @@ class TestCheckout():
 
 
 
-
-
-
-
-
