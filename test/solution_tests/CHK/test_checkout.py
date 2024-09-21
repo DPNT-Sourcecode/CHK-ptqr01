@@ -36,8 +36,12 @@ class TestCheckout():
         assert checkout_solution.checkout('AAAAABBB') == 275  #  5 A's for 200 + 2 B's for 45 + 1 B for 30
 
         # Combined offers for A, E and B
-        assert checkout_solution.checkout('AAAEEBB') == 175  #  3 A's for 130 + 2 E's for 80 + 1
-        assert checkout_solution.checkout('AAAAABBB') == 275  #  5 A's for 200 + 2B for 45 + 1B for 30
+        assert checkout_solution.checkout('AAAEEBB') == 240  #  3 A's for 130 + 2 E's for 80 + 1 B free + 1 B for 30
+        assert checkout_solution.checkout('AAAAEEBB') == 290  #  3 A's for 130 + 1 A for 50 + 2 E's for 80 + 1 B free + 1 B for 30
+
+        # Combined offers for A, E and F
+        assert checkout_solution.checkout('AEEFFF') == 150  #  1 A for 50 + 2 E's for 80 + 3 F's for 20
+        assert checkout_solution.checkout('AEEFFF') == 150  #  1 A for 50 + 2 E's for 80 + 3 F's for 20
 
 
         # Multi-item tests with offers applied
@@ -63,6 +67,7 @@ class TestCheckout():
 
     # def test_checkout_invalid(self):
     #     assert checkout_solution.checkout('AABR') == -1
+
 
 
 
