@@ -44,6 +44,13 @@ def checkout(skus: str) -> int:
     # Calculate total price
     total = 0
 
+    # Step 1: Apply free item offers first
+    
+
+    # Step 2: Apply discounts and compute the total
+
+
+
     for sku, count in counts.items():
         if sku in offers:
             # Apply offers, if available
@@ -96,6 +103,7 @@ def checkout(skus: str) -> int:
     #         total += counts[sku] * prices[sku]
 
     # return total
+
 
 
 
