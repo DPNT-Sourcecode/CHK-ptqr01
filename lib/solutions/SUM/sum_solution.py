@@ -11,6 +11,3 @@ def compute(x: int, y: int) -> int:
         int: The sum of the two integers.
     """
     return x + y
-
-
-
