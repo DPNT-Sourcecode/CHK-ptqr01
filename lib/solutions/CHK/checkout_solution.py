@@ -35,6 +35,9 @@ def checkout(skus: str) -> int:
         'V': [(3, 130), (2, 90)]
     }
 
+    # Items for the group discount (buy any 3 for 45)
+    group_discount_items = ['S', 'T', 'X', 'Y', 'Z']
+
     # Count occurrences of each SKU
     counts = {}
     for sku in skus:
@@ -69,4 +72,5 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
+
 
