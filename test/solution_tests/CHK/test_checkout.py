@@ -9,11 +9,16 @@ class TestCheckout():
         assert checkout_solution.checkout('D') == 15
         assert checkout_solution.checkout('E') == 40
         assert checkout_solution.checkout('F') == 10
+        assert checkout_solution.checkout('G') == 20
+        assert checkout_solution.checkout('Z') == 50
 
     def test_multiple_items_no_offers(self):
         assert checkout_solution.checkout('ABCD') == 115
         assert checkout_solution.checkout('ABCDE') == 155
         assert checkout_solution.checkout('ABCDEF') == 165
+        assert checkout_solution.checkout('ABCDEFG') == 185
+        assert checkout_solution.checkout('XYZ') == 150
+
 
     def test_single_item_offers(self):
         # Offers for A
@@ -27,6 +32,11 @@ class TestCheckout():
 
         # Offers for F
         assert checkout_solution.checkout('FFF') == 20  # 3 F's for 20
+        assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
+        assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
+
+        # Offers for H
+        assert checkout_solution.checkout('HHH') == 20  # 3 F's for 20
         assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
         assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
 
@@ -52,3 +62,4 @@ class TestCheckout():
         # assert checkout_solution.checkout('AABR') == -1
         # assert checkout_solution.checkout('YYY') == -1
         assert checkout_solution.checkout('123') == -1
+
