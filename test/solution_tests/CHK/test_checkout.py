@@ -79,8 +79,22 @@ class TestCheckout():
     # def test_empty_basket(self):
     #     assert checkout_solution.checkout('') == 0
 
-    # def test_basket_with_all_skus(self):
-    #     assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 965
+    def test_basket_with_all_skus(self):
+        assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 800
+
+S 20
+T 20
+X 17
+Y 20
+Z 21
+
+3 for 45
+
+17 + 20 = 37 + 45 = 82
+
+
+
+
 
 
 
