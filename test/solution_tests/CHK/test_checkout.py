@@ -10,7 +10,7 @@ class TestCheckout():
         assert checkout_solution.checkout('E') == 40
         assert checkout_solution.checkout('F') == 10
         assert checkout_solution.checkout('G') == 20
-        assert checkout_solution.checkout('Z') == 50
+        assert checkout_solution.checkout('Z') == 21
 
     def test_multiple_items_no_offers(self):
         assert checkout_solution.checkout('ABCD') == 115
@@ -81,3 +81,4 @@ class TestCheckout():
 
     def test_basket_with_all_skus(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 965
+

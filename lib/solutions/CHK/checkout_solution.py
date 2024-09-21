@@ -13,10 +13,10 @@ def checkout(skus: str) -> int:
     # Price table
     prices = {
         'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10,
-        'G': 20, 'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90,
+        'G': 20, 'H': 10, 'I': 35, 'J': 60, 'K': 70, 'L': 90,
         'M': 15, 'N': 40, 'O': 10, 'P': 50, 'Q': 30, 'R': 50,
-        'S': 30, 'T': 20, 'U': 40, 'V': 50, 'W': 20, 'X': 90,
-        'Y': 10, 'Z': 50
+        'S': 20, 'T': 20, 'U': 40, 'V': 50, 'W': 20, 'X': 17,
+        'Y': 20, 'Z': 21
     }
 
     # Offers table (tuple: (quantity, price))
@@ -26,7 +26,7 @@ def checkout(skus: str) -> int:
         'E': [(2, 'B')],  # Buy 2 E's, get 1 B for free
         'F': [(3, 20)],  # Buy 2 F's, get 1 F for free
         'H': [(10, 80), (5, 45)],
-        'K': [(2, 150)],
+        'K': [(2, 120)],
         'N': [(3, 'M')],  # Buy 3 N's, get 1 M for free
         'P': [(5, 200)],
         'Q': [(3, 80)],
@@ -74,8 +74,8 @@ def checkout(skus: str) -> int:
     # Step 3: Apply group discount
     group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
     group_discount_sets = group_discount_count // 3
-    total -= group_discount_sets * 
-
-        sum()
+    total -= group_discount_sets * sum(prices[sku] for sku in group_discount_items[:group_discount_sets * 3])
+    total += group_discount_sets * 45
 
     return total
+
