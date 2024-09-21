@@ -79,7 +79,17 @@ class TestCheckout():
 
         # Mixed group discount and non-group items
         assert checkout_solution.checkout('XYZAA') == 145  # Group discount for XYZ + 2 A's for 100
-        assert checkout_solution.checkout('SSTTXYZZ') == 82
+        assert checkout_solution.checkout('SSTTXYZZ') == 127  # Gropu discount applied twice, remaining items priced normally
+
+    def test_combination_of_all_discounts(self):
+        """
+        Explanation:
+            - 3 A's for 130
+            - 2 B's for 45, 1 B is free
+            - 2 E's for 80
+            - 
+        """
+        assert checkout_solution.checkout('') == 
 
     def test_invalid_skus(self):
         assert checkout_solution.checkout('123') == -1
@@ -88,20 +98,8 @@ class TestCheckout():
     def test_empty_basket(self):
         assert checkout_solution.checkout('') == 0
 
-    # def test_basket_with_all_skus(self):
-        # assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 800
-
-# S 20
-# T 20
-# X 17
-# Y 20
-# Z 21
-
-# 3 for 45
-
-# 17 + 20 = 37 + 45 = 82
-
-
+    def test_basket_with_all_skus(self):
+        assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 837
 
 
 
