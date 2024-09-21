@@ -67,17 +67,11 @@ def checkout(skus: str) -> int:
         total += group_discount_sets * 45
 
         # Adjust counts for the items in the group discount after applying the discount
-        remaining_items = group_discount_sets % 3
         for sku in group_discount_items:
             if counts.get(sku, 0) > 0:
-                if counts[sku] <= remaining_items:
-                    remaining_items -= counts[sku]
-                    counts[sku] = 0
-                else:
-                    counts[sku] -= remaining_items
-                    remaining_items = 0
-            if remaining_items == 0:
-                break
+                used_items = min(counts[sku], group_discount_sets * 3)
+                counts[sku] -= used_items
+                group_discount_sets -= used_items // 3
 
     # Step 3: Apply discounts and compute the total
     for sku, count in counts.items():
@@ -91,6 +85,7 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
+
 
 
 
