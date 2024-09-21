@@ -22,7 +22,3 @@ class TestCheckout():
 
     def test_checkout_invalid(self):
         assert checkout_solution.checkout('AABR') == -1
-
-
-
-
