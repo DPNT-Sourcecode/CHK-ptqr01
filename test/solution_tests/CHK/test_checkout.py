@@ -30,6 +30,16 @@ class TestCheckout():
         assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
         assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
 
+    def test_combined_item_offers(self):
+        # Combined offers for A and B
+        assert checkout_solution.checkout('AABBB') == 175  #  2 A's for 100 + 2 B's for 45 + 1 B for 30
+        assert checkout_solution.checkout('AAAAABBB') == 275  #  5 A's for 200 + 2 B's for 45 + 1 B for 30
+
+        # Combined offers for A, E and B
+        assert checkout_solution.checkout('AAAEEBB') == 175  #  3 A's for 130 + 2 E's for 80 + 1
+        assert checkout_solution.checkout('AAAAABBB') == 275  #  5 A's for 200 + 2B for 45 + 1B for 30
+
+
         # Multi-item tests with offers applied
     #     assert checkout_solution.checkout('AA') == 100
     #     
@@ -53,6 +63,7 @@ class TestCheckout():
 
     # def test_checkout_invalid(self):
     #     assert checkout_solution.checkout('AABR') == -1
+
 
 
 
