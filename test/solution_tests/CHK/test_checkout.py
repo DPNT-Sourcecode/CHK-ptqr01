@@ -85,11 +85,16 @@ class TestCheckout():
         """
         Explanation:
             - 3 A's for 130
-            - 2 B's for 45, 1 B is free
+            - 2 B's for 45, 1 B is free from 2 E's
             - 2 E's for 80
-            - 
+            - 3 F's for 20
+            - 5 H's for 45
+            - 3 N's give 1 M for free (no charge for M)
+            - XYZ - group discount for 3 items
         """
-        assert checkout_solution.checkout('') == 
+        assert checkout_solution.checkout('AAAEEBBFFHHHHNNNMXYZ') == 465
+
+        130 + 30 + 80 + 20 + 45 + 
 
     def test_invalid_skus(self):
         assert checkout_solution.checkout('123') == -1
@@ -100,6 +105,7 @@ class TestCheckout():
 
     def test_basket_with_all_skus(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 837
+
 
 
 
