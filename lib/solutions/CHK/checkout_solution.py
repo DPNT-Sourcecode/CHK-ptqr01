@@ -20,14 +20,6 @@ def checkout(skus: str) -> int:
         'F': 10
     }
 
-    # Special offers
-    offers = {
-        'A': [(5, 200), (3, 130)], # 5 A's for 200, 3 A's for 130
-        'B': (2, 45),              # 2 B's for 45
-        'E': (2, 'B'),             # Buy 2 E's, get 1 B for free
-        'F': (3, 20),              # Buy 2 F's, get 1 F for free (3 F's for 20)
-    }
-
     # Count occurrences of each SKU
     counts = {}
     for sku in skus:
@@ -73,5 +65,3 @@ def checkout(skus: str) -> int:
             total += counts[sku] * prices[sku]
 
     return total
-
-

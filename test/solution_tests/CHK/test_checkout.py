@@ -48,33 +48,7 @@ class TestCheckout():
         assert checkout_solution.checkout('EEB') == 80  # 2 E's gives 1 B for free
         assert checkout_solution.checkout('EEBB') == 110  # 2 E's gives 1 B for free + 1 B charged
 
-        # Multi-item tests with offers applied
-    #     assert checkout_solution.checkout('AA') == 100
-    #     
-        
-    #     
-        
-        
-        
-    #     assert checkout_solution.checkout('AAABBBCCCDDD') == 310
-
-    # def test_checkout_with_e(self):
-    #     assert checkout_solution.checkout('E') == 40
-    #     assert checkout_solution.checkout('EE') == 80
-    #     assert checkout_solution.checkout('EEB') == 80  # 2 E's give 1 B free, so no charge for B
-    #     assert checkout_solution.checkout('EEBB') == 110  # 2 E's give 1 B free, so charge for 1 B
-
-    # def test_checkout_with_f(self):
-    #     assert checkout_solution.checkout('F') == 10
-    #     assert checkout_solution.checkout('FF') == 20
-    #     
-
-    # def test_checkout_invalid(self):
-    #     assert checkout_solution.checkout('AABR') == -1
-
-
-
-
-
-
-
+    def test_invalid_skus(self):
+        assert checkout_solution.checkout('AABR') == -1
+        assert checkout_solution.checkout('YYY') == -1
+        assert checkout_solution.checkout('123') == -1
