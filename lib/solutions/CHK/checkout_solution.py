@@ -39,6 +39,8 @@ def checkout(skus: str) -> int:
             total += (count // offer_count) * offer_price  # Apply special offer
             total += (count % offer_count) * prices[sku]  # Apply remaining items
         else:
-            
+            total += count * prices[sku]
+
+    return total
 
 
