@@ -36,9 +36,28 @@ def checkout(skus: str) -> int:
     # Calculate total price
     total = 0
 
-    # APply special offers for A (favoring the customer with best deal)
+    # Apply special offers for A (favoring the customer with best deal)
     if 'A' in counts:
+        count_a = counts['A']
+        total += (count_a // 5) * 200   # Apply 5 A's offer
+        count_a %= 5
+        total += (count_a // 3) * 130   # Apply 3 A's offer
+        count_a %= 3
+        total += count_a * prices['A']  # Apply remaining A's
 
+    # Apply special offers for B
+    if 'B' in counts:
+        count_b = counts['B']
+        if 'E' in counts:
+            count_e = counts['E']
+            free_b_count = count_e // 2  # One B free for every two E's
+            count_b = 
+
+        total += (count_a // 5) * 200  # Apply 5 A's offer
+        count_a %= 5
+        total += (count_a // 3) * 130  # Apply 3 A's offer
+        count_a %= 3
+        total += count_a * prices['A'] # Apply remaining A's
 
 
 
@@ -51,5 +70,6 @@ def checkout(skus: str) -> int:
             total += count * prices[sku]
 
     return total
+
 
 
