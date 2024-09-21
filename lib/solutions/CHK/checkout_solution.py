@@ -27,6 +27,7 @@ def checkout(skus: str) -> int:
         'F': [(3, 20)],  # Buy 2 F's, get 1 F for free
         'H': [(10, 80), (5, 45)],
         'K': [(2, 150)],
+        'N': [(3, 'M')],  # Buy 3 N's, get 1 M for free
         'P': [(5, 200)],
         'Q': [(3, 80)],
         'R': [(3, 'Q')],  # Buy 3 R's, get 1 Q for free
@@ -68,3 +69,4 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
+
