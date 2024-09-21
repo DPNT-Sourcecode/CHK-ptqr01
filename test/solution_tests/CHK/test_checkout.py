@@ -55,16 +55,22 @@ class TestCheckout():
 
         # Combined offers with H
         assert checkout_solution.checkout('HHHHHAAAAA') == 245  # 5 H's for 45 + 5 A's for 200
-        assert checkout_solution.checkout('HHHHHHHHHHFFFF') == 275  #  3 A's for 130 + 2 B's for 45 + 1 B free + 2 E's for 80 + 3 F's for 20
+        assert checkout_solution.checkout('HHHHHHHHHHFFFFF') == 120  #  10 H's for 80 + 5 F's for 40
 
     def test_offer_for_e_and_b(self):
         assert checkout_solution.checkout('EE') == 80  # 2 E's with no B
         assert checkout_solution.checkout('EEB') == 80  # 2 E's gives 1 B for free
         assert checkout_solution.checkout('EEBB') == 110  # 2 E's gives 1 B for free + 1 B charged
 
+    def test_offer_for_r_and_q(self):
+        assert checkout_solution.checkout('RRR') == 80  # 3 R's with no Q
+        assert checkout_solution.checkout('RRRQ') == 80  # 3 R's give 1 Q for free
+        assert checkout_solution.checkout('RRRRQQQ') == 110  # 
+
     def test_invalid_skus(self):
         # assert checkout_solution.checkout('AABR') == -1
         # assert checkout_solution.checkout('YYY') == -1
         assert checkout_solution.checkout('123') == -1
+
 
 
