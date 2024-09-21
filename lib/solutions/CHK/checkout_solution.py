@@ -25,7 +25,7 @@ def checkout(skus: str) -> int:
         'A': [(5, 200), (3, 130)], # 5 A's for 200, 3 A's for 130
         'B': (2, 45),              # 2 B's for 45
         'E': (2, 'B'),             # Buy 2 E's, get 1 B for free
-        'F': (2, 'F'),             # Buy 2 F's, get 1 F for free
+        'F': (3, 20),              # Buy 2 F's, get 1 F for free (3 F's for 20)
     }
 
     # Count occurrences of each SKU
@@ -61,10 +61,17 @@ def checkout(skus: str) -> int:
     if 'E' in counts:
         total += counts['E'] * prices['E']
 
+    # Apply special offers for F
+    if 'F' in counts:
+        count_f = counts['F']
+        total += (count_f // 3) * 20  # Apply "buy 2, get 1 free" offer (3 F's for 20)
+        total += (count_f % 3) * prices['F'] # Apply remaining F's
+
     # Apply prices for items w/o special offers
     for sku in ['C', 'D']:
         if sku in counts:
             total += counts[sku] * prices[sku]
 
     return total
+
 
