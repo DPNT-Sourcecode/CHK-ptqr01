@@ -10,6 +10,7 @@ def compute(x: int, y: int) -> int:
     Returns:
         int: The sum of the two integers.
     """
-    raise x + y
+    return x + y
+
 
 
