@@ -20,11 +20,19 @@ def checkout(skus: str) -> int:
     }
 
     # Offers table (tuple: (quantity, price))
-    offers = (
+    offers = {
         'A': [(5, 200), (3, 130)],
         'B': [(2, 45)],
-        'E': [(2, 'B')],  # But 
-    )
+        'E': [(2, 'B')],  # Buy 2 E's, get 1 B for free
+        'F': [(3, 20)],  # Buy 2 F's, get 1 F for free
+        'H': [(10, 80), (5, 45)],
+        'K': [(2, 150)],
+        'P': [(5, 200)],
+        'Q': [(3, 80)],
+        'R': [(3, 'Q')],  # Buy 3 R's, get 1 Q for free
+        'U': [(4, 120)],  # Buy 3 U's, get 1 U for free
+        'V': [(3, 130), (2, 90)]
+    }
 
     # Count occurrences of each SKU
     counts = {}
@@ -36,6 +44,15 @@ def checkout(skus: str) -> int:
     # Calculate total price
     total = 0
 
+    for sku, count in counts.items():
+        if sku in offers:
+            
+    
+    
+    
+    
+    
+    
     # Apply special offers for A (favoring the customer with best deal)
     if 'A' in counts:
         count_a = counts['A']
@@ -71,5 +88,6 @@ def checkout(skus: str) -> int:
             total += counts[sku] * prices[sku]
 
     return total
+
 
 
