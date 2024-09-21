@@ -47,10 +47,13 @@ def checkout(skus: str) -> int:
     # Step 1: Apply free item offers first
     for sku, offer_list in offers.items():
         for offer in offer_list:
-            if isinstance(offer[1], str) and offer[1] in counts:
-                # Apply "get 1 free" type offers (e.g. buy 2 E's -> get 1 B free)
-                free_item_count = (counts[sku] // offer[0])
-                counts[offer[1]] = max(0, counts[offer[1]] - free_item_count)
+            if isinstance(offer[1], str):
+                free_sku = offer[1]
+                # Check if the free item exists in the basket
+                if free_sku in counts:
+                    # Apply "get 1 free" type offers (e.g. buy 2 E's -> get 1 B free)
+                    free_item_count = (counts[sku] // offer[0])
+                    counts[offer[1]] = max(0, counts[offer[1]] - free_item_count)
 
     # Step 2: Apply discounts and compute the total
     for sku, count in counts.items():
@@ -101,6 +104,7 @@ def checkout(skus: str) -> int:
     #         total += counts[sku] * prices[sku]
 
     # return total
+
 
 
 
