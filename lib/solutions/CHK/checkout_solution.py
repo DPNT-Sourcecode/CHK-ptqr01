@@ -61,11 +61,11 @@ def checkout(skus: str) -> int:
 
     # Apply prices for items w/o special offers
     for sku in ['C', 'D']:
-        if sku in offers:
-            print(">>> sku: ", sku)
+        if sku in counts:
             total += counts[sku] * prices[sku]
 
     return total
+
 
 
 
