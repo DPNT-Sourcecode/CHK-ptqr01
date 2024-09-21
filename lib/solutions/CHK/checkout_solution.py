@@ -71,6 +71,11 @@ def checkout(skus: str) -> int:
         # Apply the remaining full-price items
         total += count * prices[sku]
 
+    # Step 3: Apply group discount
+    group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
+    group_discount_sets = group_discount_count // 3
+    total -= group_discount_sets * 
+
+        sum()
+
     return total
-
-

@@ -81,9 +81,3 @@ class TestCheckout():
 
     def test_basket_with_all_skus(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 965
-
-
-
-
-
-
