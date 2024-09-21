@@ -52,4 +52,3 @@ class TestCheckout():
         # assert checkout_solution.checkout('AABR') == -1
         # assert checkout_solution.checkout('YYY') == -1
         assert checkout_solution.checkout('123') == -1
-

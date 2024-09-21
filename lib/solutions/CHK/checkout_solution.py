@@ -46,14 +46,15 @@ def checkout(skus: str) -> int:
 
     # Step 1: Apply free item offers first
     for sku, offer_list in offers.items():
-        for offer in offer_list:
-            if isinstance(offer[1], str):
-                free_sku = offer[1]
-                # Check if the free item exists in the basket
-                if free_sku in counts:
-                    # Apply "get 1 free" type offers (e.g. buy 2 E's -> get 1 B free)
-                    free_item_count = (counts[sku] // offer[0])
-                    counts[offer[1]] = max(0, counts[offer[1]] - free_item_count)
+        if sku in counts:  # Only apply offers for items that are in the basket
+            for offer in offer_list:
+                if isinstance(offer[1], str):
+                    free_sku = offer[1]
+                    # Check if the free item exists in the basket
+                    if free_sku in counts:
+                        # Apply "get 1 free" type offers (e.g. buy 2 E's -> get 1 B free)
+                        free_item_count = (counts[sku] // offer[0])
+                        counts[offer[1]] = max(0, counts[free_sku] - free_item_count)
 
     # Step 2: Apply discounts and compute the total
     for sku, count in counts.items():
@@ -67,48 +68,3 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
-
-
-    # # Apply special offers for A (favoring the customer with best deal)
-    # if 'A' in counts:
-    #     count_a = counts['A']
-    #     total += (count_a // 5) * 200  # Apply 5 A's offer
-    #     count_a %= 5
-    #     total += (count_a // 3) * 130  # Apply 3 A's offer
-    #     count_a %= 3
-    #     total += count_a * prices['A']  # Apply remaining A's
-
-    # # Apply special offers for B
-    # if 'B' in counts:
-    #     count_b = counts['B']
-    #     if 'E' in counts:
-    #         count_e = counts['E']
-    #         free_b_count = count_e // 2   # One B free for every two E's
-    #         count_b = max(0, count_b - free_b_count)  # Deduct free B's
-    #     total += (count_b // 2) * 45   # Apply 2 B's offer
-    #     total += (count_b % 2) * prices['B'] # Apply remaining B's
-
-    # # Apply special offers for E
-    # if 'E' in counts:
-    #     total += counts['E'] * prices['E']
-
-    # # Apply special offers for F
-    # if 'F' in counts:
-    #     count_f = counts['F']
-    #     total += (count_f // 3) * 20  # Apply "buy 2, get 1 free" offer (3 F's for 20)
-    #     total += (count_f % 3) * prices['F'] # Apply remaining F's
-
-    # # Apply prices for items w/o special offers
-    # for sku in ['C', 'D']:
-    #     if sku in counts:
-    #         total += counts[sku] * prices[sku]
-
-    # return total
-
-
-
-
-
-
-
-
