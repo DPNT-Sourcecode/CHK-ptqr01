@@ -19,18 +19,22 @@ class TestCheckout():
         # Offers for A
         assert checkout_solution.checkout('AAA') == 130  # 3 A's for 130
         assert checkout_solution.checkout('AAAAA') == 200  # 5 A's for 200
-        assert checkout_solution.checkout('AAAAAA') == 260  # 3 A's for 130 + 3 A's for 130
+        assert checkout_solution.checkout('AAAAAA') == 250  # 5 A's for 200 + 1 A's for 50
 
         # Offers for B
+        assert checkout_solution.checkout('BB') == 45  #  2 B's for 45
+        assert checkout_solution.checkout('BBB') == 75  #  2 B's for 45 + 1B for 30
 
         # Offers for F
-
+        assert checkout_solution.checkout('FFF') == 20  # 3 F's for 20
+        assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
+        assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
 
         # Multi-item tests with offers applied
     #     assert checkout_solution.checkout('AA') == 100
     #     
         
-    #     assert checkout_solution.checkout('BB') == 45
+    #     
         
         
         
@@ -45,11 +49,11 @@ class TestCheckout():
     # def test_checkout_with_f(self):
     #     assert checkout_solution.checkout('F') == 10
     #     assert checkout_solution.checkout('FF') == 20
-    #     assert checkout_solution.checkout('FFF') == 20  # Buy 2 F's, get 1 F for free
-    #     assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
+    #     
 
     # def test_checkout_invalid(self):
     #     assert checkout_solution.checkout('AABR') == -1
+
 
 
 
