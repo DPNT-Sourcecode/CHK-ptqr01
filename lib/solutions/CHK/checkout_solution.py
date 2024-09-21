@@ -62,12 +62,13 @@ def checkout(skus: str) -> int:
 
     # Step 2: Apply group discount
     group_discount_skus = []
-    for sku in group_discount_skus:
+    for sku in group_discount_items:
         if sku in counts:
             group_discount_skus.extend([sku] * counts[sku])
             counts[sku] = 0  # Reset counts (these items are processed in the group discount logic)
 
     if group_discount_skus:
+        # Sort items in desc order to prioritise the most expensive ones for the discount
         group_discount_skus.sort(key=lambda sku: prices[sku], reverse=True)
         group_discount_sets = len(group_discount_skus) // 3
 
@@ -78,18 +79,6 @@ def checkout(skus: str) -> int:
         if remaining_items > 0:
             for sku in group_discount_skus[-remaining_items:]:
                 total += prices[sku]  # Add the price for the remaining items
-
-    # group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
-    # if group_discount_count >= 3:
-    #     group_discount_sets = group_discount_count // 3
-    #     total += group_discount_sets * 45
-
-    #     # Adjust counts for the items in the group discount after applying the discount
-    #     for sku in group_discount_items:
-    #         if counts.get(sku, 0) > 0:
-    #             used_items = min(counts[sku], group_discount_sets * 3)
-    #             counts[sku] -= used_items
-    #             group_discount_sets -= used_items // 3
 
     # Step 3: Apply discounts and compute the total
     for sku, count in counts.items():
@@ -103,3 +92,4 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
+
