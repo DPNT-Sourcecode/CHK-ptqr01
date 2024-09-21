@@ -94,8 +94,6 @@ class TestCheckout():
         """
         assert checkout_solution.checkout('AAAEEBBFFHHHHNNNMXYZ') == 465
 
-        130 + 30 + 80 + 20 + 45 + 
-
     def test_invalid_skus(self):
         assert checkout_solution.checkout('123') == -1
         assert checkout_solution.checkout('-!@') == -1
@@ -105,6 +103,7 @@ class TestCheckout():
 
     def test_basket_with_all_skus(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 837
+
 
 
 
