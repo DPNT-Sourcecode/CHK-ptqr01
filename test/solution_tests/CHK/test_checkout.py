@@ -36,9 +36,9 @@ class TestCheckout():
         assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
 
         # Offers for H
-        assert checkout_solution.checkout('HHH') == 20  # 3 F's for 20
-        assert checkout_solution.checkout('FFFF') == 30  # 3 F's for 20 + 1 F for 10
-        assert checkout_solution.checkout('FFFFFF') == 40  # 6 F's for 40 (2 sets of 3 for 20 each)
+        assert checkout_solution.checkout('HHHHH') == 45  # 5 H's for 45
+        assert checkout_solution.checkout('HHHHHHHHHH') == 80  # 10 H's for 80
+        assert checkout_solution.checkout('HHHHHHHHHHH') == 90  # 10 H's for 80 + 1 H for 10
 
     def test_combined_item_offers(self):
         # Combined offers for A and B
@@ -53,6 +53,10 @@ class TestCheckout():
         assert checkout_solution.checkout('AEEFFF') == 150  # 1 A for 50 + 2 E's for 80 + 3 F's for 20
         assert checkout_solution.checkout('AAABBBEEFFF') == 275  #  3 A's for 130 + 2 B's for 45 + 1 B free + 2 E's for 80 + 3 F's for 20
 
+        # Combined offers with H
+        assert checkout_solution.checkout('HHHHHAAAAA') == 245  # 5 H's for 45 + 5 A's for 200
+        assert checkout_solution.checkout('HHHHHHHHHHFFFF') == 275  #  3 A's for 130 + 2 B's for 45 + 1 B free + 2 E's for 80 + 3 F's for 20
+
     def test_offer_for_e_and_b(self):
         assert checkout_solution.checkout('EE') == 80  # 2 E's with no B
         assert checkout_solution.checkout('EEB') == 80  # 2 E's gives 1 B for free
@@ -62,4 +66,5 @@ class TestCheckout():
         # assert checkout_solution.checkout('AABR') == -1
         # assert checkout_solution.checkout('YYY') == -1
         assert checkout_solution.checkout('123') == -1
+
 
