@@ -24,9 +24,21 @@ def checkout(skus: str) -> int:
         'B': (2, 45)   # 2 B's for 45
     }
 
+    # Count occurrences of each SKU
     counts = {}
     for sku in skus:
         if sku not in prices:
-            return -1  # 
+            return -1  # Invalid SKU
+        counts[sku] = counts.get(sku, 0) + 1
+
+    # Calculate total price
+    total = 0
+    for sku, count in counts.items():
+        if sku in offers:
+            offer_count, offer_price = offers[sku]
+            total += (count // offer_count) * offer_price  # Apply special offer
+            total += (count % offer_count) * prices[sku]  # Apply remaining items
+        else:
+            
 
 
