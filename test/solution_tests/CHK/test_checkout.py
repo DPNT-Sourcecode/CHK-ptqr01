@@ -17,7 +17,9 @@ class TestCheckout():
         assert checkout_solution.checkout('ABCDE') == 155
         assert checkout_solution.checkout('ABCDEF') == 165
         assert checkout_solution.checkout('ABCDEFG') == 185
+
         assert checkout_solution.checkout('XYZ') == 45
+        assert checkout_solution.checkout('STXYZ') == 82
 
 
     # def test_single_item_offers(self):
@@ -82,15 +84,16 @@ class TestCheckout():
     def test_basket_with_all_skus(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 800
 
-S 20
-T 20
-X 17
-Y 20
-Z 21
+# S 20
+# T 20
+# X 17
+# Y 20
+# Z 21
 
-3 for 45
+# 3 for 45
 
-17 + 20 = 37 + 45 = 82
+# 17 + 20 = 37 + 45 = 82
+
 
 
 
