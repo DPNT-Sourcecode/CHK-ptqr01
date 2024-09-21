@@ -18,9 +18,6 @@ class TestCheckout():
         assert checkout_solution.checkout('ABCDEF') == 165
         assert checkout_solution.checkout('ABCDEFG') == 185
 
-        assert checkout_solution.checkout('XYZ') == 45
-        assert checkout_solution.checkout('STXYZ') == 82
-
 
     def test_single_item_offers(self):
         # Offers for A
@@ -74,6 +71,16 @@ class TestCheckout():
         assert checkout_solution.checkout('NNNNM') == 160  # 3 N's give 1 M for free, no charge for M + 1 N
         assert checkout_solution.checkout('NNNNNNMM') == 240  # 6 N's give 2 M's for free, no charge for M
 
+    def test_group_discount(self):
+        # Group discount for S, T, X, Y, Z
+        assert checkout_solution.checkout('XYZ') == 45  # Group discount applied for all items
+        assert checkout_solution.checkout('STXYZ') == 82  # Group discount applied for 3 items, remaining items proced normally
+        assert checkout_solution.checkout('SSS') == 45  # All items under group discount
+
+        # Mixed group discount and non-group items
+        assert checkout_solution.checkout('XYZAA') == 145  # Group discount for XYZ + 2 A's for 100
+        assert checkout_solution.checkout('SSTTXYZZ') == 82
+
     def test_invalid_skus(self):
         assert checkout_solution.checkout('123') == -1
         assert checkout_solution.checkout('-!@') == -1
@@ -93,6 +100,7 @@ class TestCheckout():
 # 3 for 45
 
 # 17 + 20 = 37 + 45 = 82
+
 
 
 
