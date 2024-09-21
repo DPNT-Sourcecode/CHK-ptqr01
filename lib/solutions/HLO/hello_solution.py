@@ -11,4 +11,3 @@ def hello(friend_name: str) -> str:
         str: A greeting message for the friend.
     """
     return f'Hello, {friend_name}!'
-
