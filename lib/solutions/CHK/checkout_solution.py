@@ -58,9 +58,18 @@ def checkout(skus: str) -> int:
                     if free_sku in counts:
                         # Apply "get 1 free" type offers (e.g. buy 2 E's -> get 1 B free)
                         free_item_count = (counts[sku] // offer[0])
-                        counts[offer[1]] = max(0, counts[free_sku] - free_item_count)
+                        counts[free_sku] = max(0, counts[free_sku] - free_item_count)
 
     # Step 2: Apply group discount
+    group_discount_skus = []
+    for sku in group_discount_skus:
+        if sku in counts:
+            group_discount_skus.extend([sku] * counts[sku])
+            counts[sku] = 0  # Reset counts (these items are processed in the group discount logic)
+
+    if group_discount_skus:
+        group_discount_skus.sort(key=lambda sku: )
+
     group_discount_count = sum(counts.get(sku, 0) for sku in group_discount_items)
     if group_discount_count >= 3:
         group_discount_sets = group_discount_count // 3
@@ -85,6 +94,7 @@ def checkout(skus: str) -> int:
         total += count * prices[sku]
 
     return total
+
 
 
 
