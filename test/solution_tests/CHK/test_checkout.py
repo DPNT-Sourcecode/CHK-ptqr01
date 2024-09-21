@@ -2,7 +2,7 @@ from lib.solutions.CHK import checkout_solution
 
 
 class TestCheckout():
-    def test_checkout_valud(self):
+    def test_checkout_valid(self):
         assert checkout_solution.checkout('A') == 50
         assert checkout_solution.checkout('AA') == 100
         assert checkout_solution.checkout('AAA') == 130
@@ -17,3 +17,4 @@ class TestCheckout():
     def test_checkout_invalid(self):
         assert checkout_solution.checkout('E') == -1
         assert checkout_solution.checkout('AABR') == -1
+

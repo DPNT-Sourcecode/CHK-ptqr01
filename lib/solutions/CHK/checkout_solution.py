@@ -59,19 +59,13 @@ def checkout(skus: str) -> int:
     if 'E' in counts:
         total += counts['E'] * prices['E']
 
-    
-
-
-
-    for sku, count in counts.items():
+    # Apply prices for items w/o special offers
+    for sku in ['C', 'D']:
         if sku in offers:
-            offer_count, offer_price = offers[sku]
-            total += (count // offer_count) * offer_price  # Apply special offer
-            total += (count % offer_count) * prices[sku]  # Apply remaining items
-        else:
-            total += count * prices[sku]
+             total += counts[sku] * prices[sku]
 
     return total
+
 
 
 
