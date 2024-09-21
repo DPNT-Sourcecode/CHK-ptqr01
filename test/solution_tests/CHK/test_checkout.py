@@ -63,14 +63,19 @@ class TestCheckout():
         assert checkout_solution.checkout('EEBB') == 110  # 2 E's gives 1 B for free + 1 B charged
 
     def test_offer_for_r_and_q(self):
-        assert checkout_solution.checkout('RRR') == 80  # 3 R's with no Q
-        assert checkout_solution.checkout('RRRQ') == 80  # 3 R's give 1 Q for free
-        assert checkout_solution.checkout('RRRRQQQ') == 110  # 
+        assert checkout_solution.checkout('RRR') == 150  # 3 R's with no Q
+        assert checkout_solution.checkout('RRRQ') == 150  # 3 R's give 1 Q for free
+        assert checkout_solution.checkout('RRRRQQQ') == 260  # 3 R's give 1 Q for free, 3 Q's for 80 + 1 R for 50
 
     def test_invalid_skus(self):
-        # assert checkout_solution.checkout('AABR') == -1
-        # assert checkout_solution.checkout('YYY') == -1
         assert checkout_solution.checkout('123') == -1
+        assert checkout_solution.checkout('-!@') == -1
+
+    def test_empty_basket(self):
+        assert checkout_solution.checkout('') == 0
+
+    def test_basket_with_all_skus(self):
+        assert checkout_solution.checkout('ABCDEFGHIJKLOMNPQRSTUVWXYZ') == 
 
 
 
