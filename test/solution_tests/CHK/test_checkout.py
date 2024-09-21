@@ -18,10 +18,11 @@ class TestCheckout():
         assert checkout_solution.checkout('E') == 40
         assert checkout_solution.checkout('EE') == 80
         assert checkout_solution.checkout('EEB') == 80  # 2 E's give 1 B free, so no charge for B
-        assert checkout_solution.checkout('EEB') == 80  # 2 E's give 1 B free, so no charge for B
+        assert checkout_solution.checkout('EEBB') == 110  # 2 E's give 1 B free, so charge for 1 B
 
     def test_checkout_invalid(self):
         assert checkout_solution.checkout('AABR') == -1
+
 
 
 
